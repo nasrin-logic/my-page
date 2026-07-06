@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>"Ramazan Kose Assalam walaikum!!!Wie geht es dir?"</title>
+  <style>
+    body {
+      background-color: Navy;
+      color: White;
+      font-family: 'Consolas', monospace;
+      font-size: 20px;
+      white-space: pre;
+      padding: 20px;
+      overflow-y: scroll;
+      height: 100vh;
+      margin: 0;
+    }
+  </style>
+</head>
+<body id="output">
+  <script>
+    const message = "Ramazan Kose Assalam walaikum!!!Wie geht es dir?";
+    const output = document.getElementById("output");
+    let k = 0, i = 0, direction = "right";
+
+    function addLine(line) {
+      output.innerHTML += line + "\n";
+      window.scrollTo(0, document.body.scrollHeight);
+    }
+
+    function zigzagStep() {
+      if (k >= 5) return; // stop after 5 waves, remove this line to loop forever
+
+      if (direction === "right") {
+        addLine(" ".repeat(i) + message);
+        i++;
+        if (i < 10) {
+          setTimeout(zigzagStep, 100);
+        } else {
+          i = 0;
+          direction = "left";
+          setTimeout(zigzagStep, 100);
+        }
+      } else {
+        addLine(" ".repeat(10 - i) + message);
+        i++;
+        if (i < 10) {
+          setTimeout(zigzagStep, 100);
+        } else {
+          i = 0;
+          k++;
+          direction = "right";
+          setTimeout(zigzagStep, 100);
+        }
+      }
+    }
+
+    zigzagStep();
+  </script>
+</body>
+</html>
